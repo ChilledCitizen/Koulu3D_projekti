@@ -33,6 +33,11 @@ public class PatrolState : IEnenmyState
         
     }
 
+    public void ToCheckState()
+    {
+        throw new NotImplementedException();
+    }
+
     public void ToPatrolState()
     {
 

@@ -9,8 +9,10 @@ public class Player : MonoBehaviour
     public float rotSpeed;
     public float jumpForce;
     public bool jump;
+    public float lookSpeed = 1;
     float x, z;
-
+    float mouseInputX;
+    Vector3 look;
 
 
     void Update()
@@ -24,10 +26,14 @@ public class Player : MonoBehaviour
             jump = true;
         }
 
-        
+        mouseInputX = Input.GetAxis("Mouse X") * lookSpeed;
+       
+        look = new Vector3(0, mouseInputX, 0);
 
-        transform.Rotate(0, x, 0);
-        transform.Translate(0, 0, z);
+
+
+        transform.Rotate(look);
+        transform.Translate(x, 0, z);
     }
 
     private void OnCollisionEnter(Collision other)

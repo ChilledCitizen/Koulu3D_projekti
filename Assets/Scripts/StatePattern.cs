@@ -8,6 +8,7 @@ public class StatePattern : MonoBehaviour {
     public float searchDur = 4f;
     public float sideRange = 20f;
     public Transform eyes;
+    public Vector3 lastPosition;
 
     public Transform[] wayPoints;
 
@@ -23,15 +24,20 @@ public class StatePattern : MonoBehaviour {
     public AlertState alertState;
     [HideInInspector]
     public ChaseState chaseState;
+    [HideInInspector]
+    public CheckState checkState;
 
     [HideInInspector]
     public UnityEngine.AI.NavMeshAgent navMeshAgent;
+
+  
 
     private void Awake()
     {
         patrolState = new PatrolState(this);
         alertState = new AlertState(this);
         chaseState = new ChaseState(this);
+        checkState = new CheckState(this);
         navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
 

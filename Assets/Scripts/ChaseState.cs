@@ -26,6 +26,12 @@ public class ChaseState : IEnenmyState{
         
     }
 
+    public void ToCheckState()
+    {
+        enemy.lastPosition = enemy.chaseTarget.position;
+        enemy.currentState = enemy.checkState;
+    }
+
     public void ToPatrolState()
     {
         enemy.currentState = enemy.patrolState;
@@ -52,7 +58,8 @@ public class ChaseState : IEnenmyState{
         }
         else
         {
-            ToAlertState();
+            
+            ToCheckState();
         }
 
         Debug.DrawRay(enemy.eyes.transform.position, enemy.eyes.transform.forward * enemy.sideRange, Color.green);

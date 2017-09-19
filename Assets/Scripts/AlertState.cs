@@ -29,6 +29,11 @@ public class AlertState : IEnenmyState {
         searchTimer = 0f;
     }
 
+    public void ToCheckState()
+    {
+        throw new NotImplementedException();
+    }
+
     public void ToPatrolState()
     {
         enemy.currentState = enemy.patrolState;
