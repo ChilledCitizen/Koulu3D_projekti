@@ -12,28 +12,45 @@ public class Player : MonoBehaviour
     public float lookSpeed = 1;
     float x, z;
     float mouseInputX;
+    public Camera myCam;
     Vector3 look;
+    PhotonView photonView;
 
-
-    void Update()
+    void Start()
     {
-        x = Input.GetAxis("Horizontal") * Time.deltaTime * rotSpeed;
-        z = Input.GetAxis("Vertical") * Time.deltaTime * movSpeed;
+        photonView = GetComponent<PhotonView>();
 
-        if (Input.GetKeyDown(KeyCode.Space) && jump == false)
+        if (photonView.isMine)
         {
-            GetComponent<Rigidbody>().AddForce(0, jumpForce, 0, ForceMode.Impulse);
-            jump = true;
+            myCam.enabled = true;
         }
 
-        mouseInputX = Input.GetAxis("Mouse X") * lookSpeed;
-       
-        look = new Vector3(0, mouseInputX, 0);
+
+
+    }
+    void Update()
+    {
+        if (photonView.isMine)
+        {
+
+            x = Input.GetAxis("Horizontal") * Time.deltaTime * rotSpeed;
+            z = Input.GetAxis("Vertical") * Time.deltaTime * movSpeed;
+
+            if (Input.GetKeyDown(KeyCode.Space) && jump == false)
+            {
+                GetComponent<Rigidbody>().AddForce(0, jumpForce, 0, ForceMode.Impulse);
+                jump = true;
+            }
+
+            mouseInputX = Input.GetAxis("Mouse X") * lookSpeed;
+
+            look = new Vector3(0, mouseInputX, 0);
 
 
 
-        transform.Rotate(look);
-        transform.Translate(x, 0, z);
+            transform.Rotate(look);
+            transform.Translate(x, 0, z);
+        }
     }
 
     private void OnCollisionEnter(Collision other)
@@ -43,5 +60,7 @@ public class Player : MonoBehaviour
             jump = false;
         }
     }
+
+   
 
 }

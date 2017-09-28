@@ -9,46 +9,59 @@ public class Shooty : MonoBehaviour
     public float lookSpeed, shotMod = 1;
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
+    PhotonView photonView;
+    public GameObject player;
+    void Start()
+    {
 
-    // Use this for initialization
-    void Start () {
+        photonView = player.GetComponent<PhotonView>();
 
-       
-		
-	}
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
 
-        mouseY = Input.GetAxis("Mouse Y") * -lookSpeed;
-
-        transform.Rotate(mouseY, 0, 0);
-
-        if (Input.GetMouseButton(0))
+        if (photonView.isMine)
         {
-            shootSpeed += shotMod;
-            Debug.Log("Power = " + shootSpeed);
+
+            mouseY = Input.GetAxis("Mouse Y") * -lookSpeed;
+
+
+            transform.Rotate(Mathf.Clamp(mouseY, -30, 20), 0, 0);
+
+            if (Input.GetMouseButton(0))
+            {
+                shootSpeed += shotMod;
+                Debug.Log("Power = " + shootSpeed);
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                Fire();
+            }
         }
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            Fire();
-        }	
 	}
 
     void Fire()
     {
         // Create the Bullet from the Bullet Prefab
-        GameObject bullet = Instantiate(
-            bulletPrefab,
-            bulletSpawn.position,
-            bulletSpawn.rotation);
+        /* GameObject bullet = PhotonView.Instantiate(
+             bulletPrefab,
+             bulletSpawn.position,
+             bulletSpawn.rotation);
+             */
 
+        
+
+        GameObject bullet = PhotonNetwork.Instantiate("Ball", bulletSpawn.position, bulletSpawn.rotation, 0);
+
+        photonView.RPC("ShootBall", PhotonTargets.Others, bulletSpawn.position, bulletSpawn.rotation, shootSpeed);
         // Add velocity to the bullet
-        bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * shootSpeed;
+        bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * shootSpeed, ForceMode.Impulse);
 
         // Destroy the bullet after 2 seconds
-        Destroy(bullet, 2.0f);
+       // PhotonNetwork.Destroy(bullet, 2.0f);
         shootSpeed = 0;
     }
 }

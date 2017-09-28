@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Koulu3D_projekti", "Assembly-CSharp.csproj", "{9B71B1ED-0FD8-92A3-C02E-6F5B72752157}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Koulu3D_projekti", "Assembly-CSharp-firstpass.csproj", "{D2E0047E-01EB-6654-C22E-C063004C3F0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Koulu3D_projekti", "Assembly-CSharp-Editor.csproj", "{012D8321-9147-CDD6-85F1-56E66E5A575F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +17,14 @@ Global
 		{9B71B1ED-0FD8-92A3-C02E-6F5B72752157}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B71B1ED-0FD8-92A3-C02E-6F5B72752157}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B71B1ED-0FD8-92A3-C02E-6F5B72752157}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2E0047E-01EB-6654-C22E-C063004C3F0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2E0047E-01EB-6654-C22E-C063004C3F0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2E0047E-01EB-6654-C22E-C063004C3F0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2E0047E-01EB-6654-C22E-C063004C3F0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{012D8321-9147-CDD6-85F1-56E66E5A575F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{012D8321-9147-CDD6-85F1-56E66E5A575F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{012D8321-9147-CDD6-85F1-56E66E5A575F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{012D8321-9147-CDD6-85F1-56E66E5A575F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
